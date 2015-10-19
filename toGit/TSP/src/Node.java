@@ -4,13 +4,13 @@ import java.util.ArrayList;
  * A single node in the tree of paths
  */
 public class Node {
-	public Node parent;
+	private Node parent;
 	private double parent_cost;
 
 	private double[][] distances;
 	private int[] active_set;
 
-	public int index;
+	private int index;
 
 	/**
 	 * Constructs a new Node
@@ -41,7 +41,6 @@ public class Node {
 	/**
 	 * Generate and return this node's children
 	 *
-	 * @precondition Node is not terminal
 	 * @return Array of children
 	 */
 	public ArrayList<Node> generateChildren() {
@@ -57,8 +56,8 @@ public class Node {
 			i++;
 		}
 
-		for(int j = 0; j < new_set.length; j++)
-			children.add(new Node(this, distances[index][new_set[j]], distances, new_set, new_set[j]));
+        for (int aNew_set : new_set)
+            children.add(new Node(this, distances[index][aNew_set], distances, new_set, aNew_set));
 
 		return children;
 	}

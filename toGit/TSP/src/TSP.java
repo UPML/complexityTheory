@@ -17,10 +17,8 @@ public class TSP {
 
     }
 
-    public static void tsp(String args, PrintWriter out) {
-        File file = null;
-        file = new File(args);
-        assert (file != null);
+    private static void tsp(String args, PrintWriter out) {
+        File file = new File(args);
 
         BufferedReader reader = null;
         try {
@@ -36,17 +34,17 @@ public class TSP {
             String line;
             while (!(line = reader.readLine()).equals("NODE_COORD_SECTION")) {
                 String[] entry = line.split(":");
-                switch (entry[0].trim()) {
-                    case "DIMENSION":
-                        numberOfVertices = Integer.parseInt(entry[1]);
-                        break;
+                String s = entry[0].trim();
+                if (s.equals("DIMENSION")) {
+                    numberOfVertices = Integer.parseInt(entry[1]);
+
                 }
             }
         } catch (Exception e) {
             alert("Error parsing header " + e);
             System.exit(1);
         }
-        ArrayList<City> cities = new ArrayList<City>(numberOfVertices);
+        ArrayList<City> cities = new ArrayList<>(numberOfVertices);
 
         try {
             String line;

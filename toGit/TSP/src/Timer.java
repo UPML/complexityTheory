@@ -2,10 +2,8 @@
  * General class to time tasks
  */
 public class Timer {
-	long start;
-	long stop;
-	public final static String[] units = { "μs", "ms", "s", "ks", "Ms" };
-
+	private long start;
+	private long stop;
 	/**
 	 * Start the timer
 	 */
@@ -20,11 +18,6 @@ public class Timer {
 		stop = System.nanoTime();
 	}
 
-	/**
-	 * Get the time elapsed in nanoseconds
-	 *
-	 * @return Time in nanoseconds
-	 */
 	public long getTime() {
 		return stop - start;
 	}

@@ -5,9 +5,9 @@ import java.util.HashSet;
  * Solves the traveling salesman problem using Branch and Bound by utilizing Node's
  */
 public class Solver {
-	double[][] distances;
-	static  double best_cost;
-	int[] best_path;
+	private double[][] distances;
+	private static  double best_cost;
+	private int[] best_path;
 
 	/**
 	 * Constructs a new Solver and initializes distances array
@@ -28,7 +28,7 @@ public class Solver {
 	 * @return An array with the locations of the best path
 	 */
 	public int[] calculate() {
-		HashSet<Integer> location_set = new HashSet<Integer>(distances.length);
+		HashSet<Integer> location_set = new HashSet<>(distances.length);
 		for(int i = 0; i < distances.length; i++)
 			location_set.add(i);
         best_path = new int[distances.length];
@@ -117,15 +117,4 @@ public class Solver {
             //minChild =  lowerBound(children);
    //     }
 	}
-
-    private Node lowerBound(ArrayList<Node> children) {
-        Node min = children.get(0);
-        for(Node child: children){
-            if(child.getLowerBound() < min.getLowerBound()){
-                min = child;
-            }
-        }
-        children.remove(min);
-        return min;
-    }
 }
